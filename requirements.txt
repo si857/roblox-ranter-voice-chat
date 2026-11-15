@@ -1,0 +1,7 @@
+streamlit>=1.37.0
+openai>=1.40.0
+requests>=2.31.0
+pydub>=0.25.1
+python-dotenv>=1.0.0
+# pydub needs the "audioop" module, which was removed in Python 3.13
+audioop-lts; python_version >= "3.13"
