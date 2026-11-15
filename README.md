@@ -1,4 +1,6 @@
-# 🎙️ Roblox Ranter Voice Chat https://github.com/si857/roblox-ranter-voice-chat/
+# 🎙️ Roblox Ranter Voice Chat [cilck here to get the github source code](https://github.com/roblox-ranter-voice-chat/edit/main/)
+)
+
 
 A Streamlit chatbot that replies in the **squeaky, fast-talking Roblox story narrator** voice.
 
