@@ -1,4 +1,4 @@
-# 🎙️ Roblox Ranter Voice Chat [cilck here to get the github source code](https://github.com/roblox-ranter-voice-chat/)
+# 🎙️ Roblox Ranter Voice Chat [cilck here to get the github source code](https://github.com/si857/roblox-ranter-voice-chat)
 )
 
 
