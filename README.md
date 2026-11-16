@@ -111,7 +111,23 @@ fast = fast.set_frame_rate(44100)
 ```
 
 The first line keeps the same samples but labels them with a 1.28x higher frame rate, so they play faster *and* higher in pitch (no pitch correction, just like CapCut's plain speed-up). The second line resamples back to the standard 44100 Hz so browsers play the file correctly while keeping the new speed and pitch.
+## 📱 Use it on your phone
 
+You don't need to download or install anything. It works in your phone's browser on both Android and iPhone.
+
+1. Open the app: **[YOUR-APP-LINK](https://roblox-ranter-voice-chat-9a6jeyznuz8nlurxcxjgud.streamlit.app/)**
+2. Tap the **arrow at the top left** to open the menu.
+3. Pick an AI provider (Gemini, Groq or OpenAI) and paste your API key. Also paste your ElevenLabs API key for the voice.
+4. Close the menu and tap **▶️ Start Agent**.
+5. Type a message. The reply is spoken in the squeaky Roblox ranter voice.
+
+**Tips**
+- **No sound?** Tap **🔁 Replay**. Phone browsers often block sound that starts by itself, but a tap always allows it.
+- **Save the audio:** Tap **Download MP3** under a reply to use it in your videos.
+- **App icon:** In Chrome, tap the **⋮** menu and choose **Add to Home screen**. On iPhone, tap **Share** and then **Add to Home Screen**.
+- **Stop the voice:** Tap **⏹️ Stop Agent** for text-only replies, which don't use any ElevenLabs credits.
+
+**Your keys are yours.** This app is free, but you need your own API keys. They are used only in your session and are never stored or shared.
 ## Troubleshooting
 
 - **"Could not process the audio" / `FileNotFoundError: ffmpeg`**: FFmpeg isn't installed or isn't on your PATH. Redo step 1 and restart your terminal.
