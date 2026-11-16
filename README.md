@@ -115,7 +115,7 @@ The first line keeps the same samples but labels them with a 1.28x higher frame 
 
 You don't need to download or install anything. It works in your phone's browser on both Android and iPhone.
 
-1. Open the app: **[YOUR-APP-LINK](https://roblox-ranter-voice-chat-9a6jeyznuz8nlurxcxjgud.streamlit.app/)**
+1. Open the app: **[YOUR-APP-LINK](https://roblox-ranter-voice-chat-f2bhegg9qnnw8xvdkacida.streamlit.app/)**
 2. Tap the **arrow at the top left** to open the menu.
 3. Pick an AI provider (Gemini, Groq or OpenAI) and paste your API key. Also paste your ElevenLabs API key for the voice.
 4. Close the menu and tap **▶️ Start Agent**.
