@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+<script>
+// Tiny Streamlit component with no build step. It keeps Children Mode's PIN
+// record and log in THIS browser's localStorage, so every device has its own.
+(function () {
+  var KEY_PIN = "roblox_ranter_pin_v1";
+  var KEY_LOG = "roblox_ranter_log_v1";
+  var KEY_MODE = "roblox_ranter_mode_v1";
+  var KEY_APPLIED = "roblox_ranter_applied_v1";
+  var MAX_LOG = 500;
+
+  var storageOk = true;
+  var pin = null, log = [], applied = [], mode = false;
+  var lastSent = null;
+
+  function send(type, data) {
+    window.parent.postMessage(Object.assign({ isStreamlitMessage: true, type: type }, data), "*");
+  }
+  function get(key, fallback) {
+    try {
+      var raw = window.localStorage.getItem(key);
+      return raw === null ? fallback : JSON.parse(raw);
+    } catch (e) { storageOk = false; return fallback; }
+  }
+  function put(key, value) {
+    try { window.localStorage.setItem(key, JSON.stringify(value)); }
+    catch (e) { storageOk = false; }
+  }
+  function reload() {
+    // Re-read each time so two tabs on one device do not overwrite each other.
+    var p = get(KEY_PIN, null), l = get(KEY_LOG, []), a = get(KEY_APPLIED, []), m = get(KEY_MODE, false);
+    if (storageOk) { pin = p; log = l; applied = a; mode = m; }
+  }
+
+  function handle(args) {
+    var ops = (args && args.ops) || [];
+    reload();
+    var changed = false;
+    ops.forEach(function (op) {
+      if (applied.indexOf(op.id) !== -1) return;
+      if (op.type === "set_pin") pin = op.rec;
+      else if (op.type === "log") log.push(op.entry);
+      else if (op.type === "clear_log") log = [];
+      else if (op.type === "set_mode") mode = !!op.value;
+      applied.push(op.id);
+      changed = true;
+    });
+    if (changed) {
+      log = log.slice(-MAX_LOG);
+      applied = applied.slice(-300);
+      put(KEY_PIN, pin); put(KEY_MODE, mode); put(KEY_LOG, log); put(KEY_APPLIED, applied);
+    }
+    var value = {
+      available: storageOk,
+      pin: pin,
+      mode: mode,
+      log: log,
+      acked: ops.map(function (o) { return o.id; }).filter(function (id) { return applied.indexOf(id) !== -1; })
+    };
+    var text = JSON.stringify(value);
+    if (text !== lastSent) { lastSent = text; send("streamlit:setComponentValue", { value: value, dataType: "json" }); }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (event.data && event.data.type === "streamlit:render") handle(event.data.args);
+  });
+  send("streamlit:componentReady", { apiVersion: 1 });
+  send("streamlit:setFrameHeight", { height: 0 });
+})();
+</script>
+</body>
+</html>
