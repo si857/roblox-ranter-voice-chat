@@ -139,7 +139,7 @@ You don't need to download or install anything. It works in your phone's browser
 ## Notes
 
 - Keep replies short: ElevenLabs charges credits per character. The app caps each voiced reply at 2,500 characters.
-- Never commit your `.env` file. It's already in `.gitignore`.
+- Never commit your `.env` file. It's already in `.gitignore`. and download the latest files (the one with bigger number)
 
 ## Project structure
 
